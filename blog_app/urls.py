@@ -17,12 +17,10 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 
-import blog.views
-
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('article/', blog.views.ArticleListView.as_view()),
-    path('article/<int:article_id>', blog.views.ArticleView.as_view()),
+    path('article/', include('blog.urls')),
+    path('api/', include('api.urls')),
 ]
 
 if settings.DEBUG:
