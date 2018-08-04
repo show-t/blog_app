@@ -25,7 +25,7 @@ SECRET_KEY = '^boqxg*owhjj=j8q2z7(rpsgc)bqudz2ah*^i8=5wi*&cuwe=g'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'blog',
+    'rest_framework',
+    'django_filters',
     
     'debug_toolbar',
 ]
@@ -130,9 +132,15 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
 
-# Debug Toolbar
+# Django REST Framework
 
-DEBUG = True
+REST_FRAMEWORK = {
+    'DEFAULT_FILTER_BACKENDS': ('django_filters.rest_framework.DjangoFilterBackend',),
+    #'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    #'PAGE_SIZE': 2,
+} 
+
+# Debug Toolbar
 
 if DEBUG:
     INTERNAL_IPS = ['127.0.0.1', 'localhost']
